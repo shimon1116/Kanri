@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.setButton.setOnClickListener {
             binding.money.text = "￥" + 9999
-            //startActivity(setIntent)
+            startActivity(setIntent)
             binding.money.text = "￥" + 4444
         }
     }
