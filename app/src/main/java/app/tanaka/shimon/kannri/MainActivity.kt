@@ -36,10 +36,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.setButton.setOnClickListener {
-            binding.money.text = "￥" + 9999
             val setIntent = Intent(this, SetActivity::class.java)
             startActivity(setIntent)
-            binding.money.text = "￥" + 4444
+            finish()
         }
     }
 }
