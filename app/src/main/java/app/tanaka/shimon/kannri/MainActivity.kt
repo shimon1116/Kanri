@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater).apply { setContentView(this.root) }
 
         var money = 0
-        val setIntent = Intent(this, SetActivity::class.java)
 
 
         binding.money.text = "￥" + money.toString()
@@ -38,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.setButton.setOnClickListener {
             binding.money.text = "￥" + 9999
+            val setIntent = Intent(this, SetActivity::class.java)
             startActivity(setIntent)
             binding.money.text = "￥" + 4444
         }
