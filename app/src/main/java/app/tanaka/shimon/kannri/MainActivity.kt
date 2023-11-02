@@ -1,6 +1,9 @@
 package app.tanaka.shimon.kannri
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import app.tanaka.shimon.kannri.databinding.ActivityMainBinding
@@ -13,26 +16,60 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).apply { setContentView(this.root) }
-
+        val pref : SharedPreferences = getSharedPreferences("SharedPref", Context.MODE_PRIVATE)
+        //val goal = pref.getInt("GoalKey", 0)
+        //var money = pref.getInt("GoalKey", 0)
+        //var money = goal
         var money = 0
+        val editor = pref.edit()
 
-
+        binding.money.setTextColor(Color.parseColor("#F9B208"))
         binding.money.text = "￥" + money.toString()
 
 
         binding.plus100.setOnClickListener {
             money = money - 100
-            binding.money.text = "￥" + money.toString()
+            if (money < 0) {
+                money = money * -1
+                binding.money.setTextColor(Color.RED)
+                binding.money.text = "￥" + money.toString()
+                editor.putString("GoalKey", money.toString())
+                editor.apply()
+            } else {
+                binding.money.text = "￥" + money.toString()
+                editor.putString("GoalKey", money.toString())
+                editor.apply()
+            }
         }
 
         binding.plus1000.setOnClickListener {
             money = money - 1000
-            binding.money.text = "￥" + money.toString()
+            if (money < 0) {
+                money = money * -1
+                binding.money.setTextColor(Color.RED)
+                binding.money.text = "￥" + money.toString()
+                editor.putString("GoalKey", money.toString())
+                editor.apply()
+            } else {
+                binding.money.text = "￥" + money.toString()
+                editor.putString("GoalKey", money.toString())
+                editor.apply()
+            }
         }
 
         binding.plus10000.setOnClickListener {
             money = money - 10000
-            binding.money.text = "￥" + money.toString()
+            if (money < 0) {
+                money = money * -1
+                binding.money.setTextColor(Color.RED)
+                binding.money.text = "￥" + money.toString()
+                editor.putString("GoalKey", money.toString())
+                editor.apply()
+            } else {
+                binding.money.text = "￥" + money.toString()
+                editor.putString("GoalKey", money.toString())
+                editor.apply()
+            }
         }
 
         binding.setButton.setOnClickListener {
