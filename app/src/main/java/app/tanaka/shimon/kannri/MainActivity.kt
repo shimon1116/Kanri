@@ -17,11 +17,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).apply { setContentView(this.root) }
         val pref : SharedPreferences = getSharedPreferences("SharedPref", Context.MODE_PRIVATE)
-        //val goal = pref.getInt("GoalKey", 0)
+        //var money = pref.getInt("GoalKey", 0)
+
+        val moneyString = pref.getString("GoalKey", "0")
+        var money = moneyString?.toIntOrNull() ?: 0
+
         //var money = pref.getInt("GoalKey", 0)
         //var money = goal
-        var money = 0
+        //var money = 0
         val editor = pref.edit()
+
 
         binding.money.setTextColor(Color.parseColor("#F9B208"))
         binding.money.text = "￥" + money.toString()
@@ -30,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         binding.plus100.setOnClickListener {
             money = money - 100
             if (money < 0) {
-                money = money * -1
+                //money = money * -1
                 binding.money.setTextColor(Color.RED)
                 binding.money.text = "￥" + money.toString()
                 editor.putString("GoalKey", money.toString())
@@ -45,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         binding.plus1000.setOnClickListener {
             money = money - 1000
             if (money < 0) {
-                money = money * -1
+                //money = money * -1
                 binding.money.setTextColor(Color.RED)
                 binding.money.text = "￥" + money.toString()
                 editor.putString("GoalKey", money.toString())
@@ -60,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         binding.plus10000.setOnClickListener {
             money = money - 10000
             if (money < 0) {
-                money = money * -1
+                //money = money * -1
                 binding.money.setTextColor(Color.RED)
                 binding.money.text = "￥" + money.toString()
                 editor.putString("GoalKey", money.toString())
