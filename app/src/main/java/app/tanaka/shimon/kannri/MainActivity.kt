@@ -28,34 +28,28 @@ class MainActivity : AppCompatActivity() {
         val editor = pref.edit()
         var money = pref.getInt("Money", 0)
         var goal = pref.getInt("GoalKey", 0)
-        val all_money = goal.toInt() + money.toInt()
+        var all_money = goal.toInt() - money.toInt()
         //整数値として保存
         editor.putInt("Money", all_money)
         editor.apply()
 
-
-        binding.money.setTextColor(Color.parseColor("#F9B208"))
-        //binding.money.text = "￥$money"
-        binding.money.text = "￥" + money.toString()
-
+        binding.moneyText.text = "￥ $all_money"
 
         //var money = pref.getInt("GoalKey", 0)
         //val editor = pref.edit()
         //binding.money.setTextColor(Color.parseColor("#F9B208"))
         //binding.money.text = "￥" + money.toString()
 
-
         binding.plus100.setOnClickListener {
             money = money - 100
             if (money < 0) {
-                //money = money * -1
-                binding.money.setTextColor(Color.RED)
-                binding.money.text = "￥" + money.toString()
-                editor.putString("GoalKey", money.toString())
+                binding.moneyText.setTextColor(Color.RED)
+                binding.moneyText.text = "￥" + money.toString()
+                editor.putString("Money", money.toString())
                 editor.apply()
             } else {
-                binding.money.text = "￥" + money.toString()
-                editor.putString("GoalKey", money.toString())
+                binding.moneyText.text = "￥" + money.toString()
+                editor.putString("Money", money.toString())
                 editor.apply()
             }
         }
@@ -63,14 +57,13 @@ class MainActivity : AppCompatActivity() {
         binding.plus500.setOnClickListener {
             money = money - 500
             if (money < 0) {
-                //money = money * -1
-                binding.money.setTextColor(Color.RED)
-                binding.money.text = "￥" + money.toString()
-                editor.putString("GoalKey", money.toString())
+                binding.moneyText.setTextColor(Color.RED)
+                binding.moneyText.text = "￥" + money.toString()
+                editor.putString("Money", money.toString())
                 editor.apply()
             } else {
-                binding.money.text = "￥" + money.toString()
-                editor.putString("GoalKey", money.toString())
+                binding.moneyText.text = "￥" + money.toString()
+                editor.putString("Money", money.toString())
                 editor.apply()
             }
         }
@@ -78,14 +71,13 @@ class MainActivity : AppCompatActivity() {
         binding.plus1000.setOnClickListener {
             money = money - 1000
             if (money < 0) {
-                //money = money * -1
-                binding.money.setTextColor(Color.RED)
-                binding.money.text = "￥" + money.toString()
-                editor.putString("GoalKey", money.toString())
+                binding.moneyText.setTextColor(Color.RED)
+                binding.moneyText.text = "￥" + money.toString()
+                editor.putString("Money", money.toString())
                 editor.apply()
             } else {
-                binding.money.text = "￥" + money.toString()
-                editor.putString("GoalKey", money.toString())
+                binding.moneyText.text = "￥" + money.toString()
+                editor.putString("Money", money.toString())
                 editor.apply()
             }
         }

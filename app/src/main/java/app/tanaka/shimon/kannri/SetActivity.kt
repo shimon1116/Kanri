@@ -18,14 +18,24 @@ class SetActivity : AppCompatActivity() {
         val back = Intent(this, MainActivity::class.java)
 
         binding.saveButton.setOnClickListener {
+            var a = 0
             val stringtext = binding.editTextNumber.text.toString()
             val editor = pref.edit()
             val intValue = stringtext.toInt()
-            // 整数値として保存
-            editor.putInt("GoalKey", intValue)
-            editor.apply()
-            startActivity(back)
-            finish()
+            if (intValue >= 0) {
+                // 整数値として保存
+                editor.putInt("GoalKey", intValue)
+                editor.apply()
+                startActivity(back)
+                finish()
+            } else {
+                // 整数値として保存
+                editor.putInt("GoalKey", 0)
+                editor.apply()
+                startActivity(back)
+                finish()
+            }
+
         }
     }
 }
