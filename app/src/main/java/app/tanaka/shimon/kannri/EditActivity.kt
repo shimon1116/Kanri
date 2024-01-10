@@ -14,18 +14,24 @@ class EditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditBinding.inflate(layoutInflater).apply { setContentView(this.root) }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         val pref: SharedPreferences = getSharedPreferences("SharedPref", Context.MODE_PRIVATE)
         val back = Intent(this, MainActivity::class.java)
 
+
+        var money = pref.getInt("Money", 0)
         binding.button.setOnClickListener {
-            val stringtext = binding.editTextNumber2.toString()
+            val stringtext = binding.editTextNumber2.text.toString()
             val editor = pref.edit()
-            val intValue = stringtext.toInt()
-            // 整数値として保存
-            //editor.putInt("GoalKey", intValue)
-            editor.putInt("Money", intValue)
+            money = money - stringtext.toInt()
+            editor.putInt("Money", money)
             editor.apply()
             startActivity(back)
+            finish()
         }
     }
 }

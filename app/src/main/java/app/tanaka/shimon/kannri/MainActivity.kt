@@ -27,13 +27,28 @@ class MainActivity : AppCompatActivity() {
         // SharedPreferencesからデータを取得する際、デフォルト値として0を指定
         val editor = pref.edit()
         var money = pref.getInt("Money", 0)
-        var goal = pref.getInt("GoalKey", 0)
-        var all_money = goal.toInt() - money.toInt()
-        //整数値として保存
-        editor.putInt("Money", all_money)
+        editor.putInt("Money", money)
         editor.apply()
 
-        binding.moneyText.text = "￥ $all_money"
+        binding.moneyText.text = "￥ $money"
+
+        binding.resetbutton.setOnClickListener {
+            money = 0
+            editor.putInt("Money", money)
+            editor.apply()
+            binding.moneyText.text = "￥ $money"
+            if (money < 0) {
+                binding.moneyText.setTextColor(Color.RED)
+            } else {
+                binding.moneyText.setTextColor(Color.GREEN)
+            }
+        }
+
+        if (money < 0) {
+            binding.moneyText.setTextColor(Color.RED)
+        } else {
+            binding.moneyText.setTextColor(Color.GREEN)
+        }
 
         //var money = pref.getInt("GoalKey", 0)
         //val editor = pref.edit()
@@ -45,11 +60,11 @@ class MainActivity : AppCompatActivity() {
             if (money < 0) {
                 binding.moneyText.setTextColor(Color.RED)
                 binding.moneyText.text = "￥" + money.toString()
-                editor.putString("Money", money.toString())
+                editor.putInt("Money", money)
                 editor.apply()
             } else {
                 binding.moneyText.text = "￥" + money.toString()
-                editor.putString("Money", money.toString())
+                editor.putInt("Money", money)
                 editor.apply()
             }
         }
@@ -59,11 +74,11 @@ class MainActivity : AppCompatActivity() {
             if (money < 0) {
                 binding.moneyText.setTextColor(Color.RED)
                 binding.moneyText.text = "￥" + money.toString()
-                editor.putString("Money", money.toString())
+                editor.putInt("Money", money)
                 editor.apply()
             } else {
                 binding.moneyText.text = "￥" + money.toString()
-                editor.putString("Money", money.toString())
+                editor.putInt("Money", money)
                 editor.apply()
             }
         }
@@ -73,11 +88,11 @@ class MainActivity : AppCompatActivity() {
             if (money < 0) {
                 binding.moneyText.setTextColor(Color.RED)
                 binding.moneyText.text = "￥" + money.toString()
-                editor.putString("Money", money.toString())
+                editor.putInt("Money", money)
                 editor.apply()
             } else {
                 binding.moneyText.text = "￥" + money.toString()
-                editor.putString("Money", money.toString())
+                editor.putInt("Money", money)
                 editor.apply()
             }
         }

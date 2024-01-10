@@ -17,25 +17,19 @@ class SetActivity : AppCompatActivity() {
         val pref: SharedPreferences = getSharedPreferences("SharedPref", Context.MODE_PRIVATE)
         val back = Intent(this, MainActivity::class.java)
 
+
+        var money = pref.getInt("Money", 0)
         binding.saveButton.setOnClickListener {
-            var a = 0
+            var zero = 0
+
             val stringtext = binding.editTextNumber.text.toString()
             val editor = pref.edit()
-            val intValue = stringtext.toInt()
-            if (intValue >= 0) {
-                // 整数値として保存
-                editor.putInt("GoalKey", intValue)
-                editor.apply()
-                startActivity(back)
-                finish()
-            } else {
-                // 整数値として保存
-                editor.putInt("GoalKey", 0)
-                editor.apply()
-                startActivity(back)
-                finish()
-            }
-
+            money = money + stringtext.toInt()
+            // 整数値として保存
+            editor.putInt("Money", money)
+            editor.apply()
+            startActivity(back)
+            finish()
         }
     }
 }
